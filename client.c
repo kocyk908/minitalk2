@@ -36,8 +36,8 @@ void	send_char(pid_t pid, char c)
 		}
 		if (kill(pid, signal) == -1)
 		{
-			perror("Error sending signal");
-			exit(EXIT_FAILURE);
+			ft_printf("Error sending signal");
+			exit(0);
 		}
 		usleep(100);
 		i--;
@@ -55,15 +55,15 @@ int	main(int argc, char **argv)
 	if (argc != 3)
 	{
 		ft_printf("Usage: %s <Server PID> <Message>\n", argv[0]);
-		return (EXIT_FAILURE);
+		return (0);
 	}
 	pid = ft_atoi(argv[1]);
 	message = argv[2];
 	i = 0;
-	while (i < strlen(message))
+	while (i < ft_strlen(message))
 	{
 		send_char(pid, message[i]);
 		i++;
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }
