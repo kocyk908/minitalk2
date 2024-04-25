@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
 #include <signal.h>
-#include <stdlib.h>
 #include "ft_printf.h"
 #include "libft.h"
 
@@ -21,16 +18,18 @@ void	handle_signal(int signum)
 {
 	static char	bits;
 	static int	count;
+	int			mask;
 
+	mask = 0;
 	if (count == 0)
-	{
 		bits = 0;
-	}
 	if (signum == SIGUSR1 || signum == SIGUSR2)
 	{
 		if (signum == SIGUSR2)
 		{
-			bits |= (1 << (7 - count));
+			mask = 1 << (7 - count);
+			if ((bits & mask) == 0)
+				bits += mask;
 		}
 		count++;
 		if (count == 8)
