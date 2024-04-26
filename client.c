@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		ft_printf("Wrong inputs -> ./client <PID> <MESSAGE> \n");
+		ft_printf("Usage: %s <PID> <Message>\n", argv[0]);
 		return (0);
 	}
 	pid = ft_atoi(argv[1]);
@@ -55,5 +55,6 @@ int	main(int argc, char **argv)
 		send_char(pid, str[i]);
 		i++;
 	}
+	send_char(pid, '\0');
 	return (0);
 }
