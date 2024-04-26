@@ -36,7 +36,7 @@ void	send_char(int pid, char c)
 	}
 }
 
-// Opóźnienie, aby zapobiec kolizji sygnałów
+// Opóźnienie, aby zapobiec kolizji sygnałów - > usleep
 
 int	main(int argc, char **argv)
 {
