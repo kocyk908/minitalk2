@@ -38,6 +38,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str[i + j] = '\0';
 	return (str);
 }
+/*
 int main(void)
 {
     const char *s1 = NULL;
@@ -49,4 +50,4 @@ int main(void)
     free(result); // Zwolnienie zaalokowanej pamięci
 
     return 0;
-}
+}*/

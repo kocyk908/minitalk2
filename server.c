@@ -34,7 +34,7 @@ void	handle_signal(int signum)
 		count++;
 		if (count == 8)
 		{
-			ft_printf("%s", &bits);
+			write(1, &bits, 1);
 			count = 0;
 		}
 	}
@@ -42,12 +42,14 @@ void	handle_signal(int signum)
 
 int	main(void)
 {
+	struct sigaction	sigact;
+
+	sigact.sa_handler = &handle_signal;
+	sigact.sa_flags = SA_RESTART;
+	sigaction(SIGUSR1, &sigact, NULL);
+	sigaction(SIGUSR2, &sigact, NULL);
 	ft_printf("Server PID: %d\n", getpid());
 	while (1)
-	{
-		signal(SIGUSR1, handle_signal);
-		signal(SIGUSR2, handle_signal);
-		pause();
-	}
+		usleep(1);
 	return (0);
 }

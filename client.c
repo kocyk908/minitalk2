@@ -17,21 +17,15 @@
 void	send_char(int pid, char c)
 {
 	int	i;
-	int	signal;
 
 	i = 7;
 	while (i >= 0)
 	{
 		if ((c >> i) & 1)
-			signal = SIGUSR2;
+			kill(pid, SIGUSR2);
 		else
-			signal = SIGUSR1;
-		if (kill(pid, signal) == -1)
-		{
-			ft_printf("Error sending signal");
-			exit(0);
-		}
-		usleep(100);
+			kill(pid, SIGUSR1);
+		usleep(200);
 		i--;
 	}
 }
@@ -39,22 +33,21 @@ void	send_char(int pid, char c)
 int	main(int argc, char **argv)
 {
 	int		pid;
-	size_t	i;
 	char	*str;
 
 	if (argc != 3)
 	{
 		ft_printf("Usage: %s <PID> <Message>\n", argv[0]);
-		return (0);
 	}
-	pid = ft_atoi(argv[1]);
-	str = argv[2];
-	i = 0;
-	while (i < ft_strlen(str))
+	else
 	{
-		send_char(pid, str[i]);
-		i++;
+		pid = ft_atoi(argv[1]);
+		str = argv[2];
+		while (str && *str)
+		{
+			send_char(pid, *str++);
+		}
+		send_char(pid, '\n');
 	}
-	send_char(pid, '\0');
 	return (0);
 }
