@@ -3,8 +3,8 @@ CFLAGS = -Wall -Wextra -Werror
 NAME_CLIENT = client
 NAME_SERVER = server
 
-LIBFT_PATH = /nfs/homes/lkoc/libft
-LIBFTPRINTF_PATH = /nfs/homes/lkoc/ft_printf
+LIBFT_PATH = libft
+LIBFTPRINTF_PATH = ft_printf
 LIBFT = $(LIBFT_PATH)/libft.a
 LIBFTPRINTF = $(LIBFTPRINTF_PATH)/libftprintf.a
 
