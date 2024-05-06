@@ -10,25 +10,23 @@ LIBFTPRINTF = $(LIBFTPRINTF_PATH)/libftprintf.a
 
 INCLUDES = -I$(LIBFT_PATH) -I$(LIBFTPRINTF_PATH)
 
-SRC_CLIENT = client.c
-SRC_SERVER = server.c
+SRC	= client.c server.c
 
-OBJ_CLIENT = $(SRC_CLIENT:.c=.o)
-OBJ_SERVER = $(SRC_SERVER:.c=.o)
+OBJS	= $(SRC:.c=.o) 
 
 all: $(NAME_CLIENT) $(NAME_SERVER)
 
-$(NAME_CLIENT): $(OBJ_CLIENT)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(LIBFT) $(LIBFTPRINTF)
+$(NAME_CLIENT): $(OBJS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ client.o $(LIBFT) $(LIBFTPRINTF)
 
-$(NAME_SERVER): $(OBJ_SERVER)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(LIBFT) $(LIBFTPRINTF)
+$(NAME_SERVER): $(OBJS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ server.o $(LIBFT) $(LIBFTPRINTF)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -f $(OBJ_CLIENT) $(OBJ_SERVER)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME_CLIENT) $(NAME_SERVER)
