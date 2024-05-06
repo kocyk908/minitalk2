@@ -34,7 +34,7 @@ void	handle_signal(int signum)
 		count++;
 		if (count == 8)
 		{
-			write(1, &bits, 1);
+			ft_printf("%s", &bits);
 			count = 0;
 		}
 	}
